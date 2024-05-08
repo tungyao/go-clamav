@@ -1,3 +1,3 @@
-module github.com/ca110us/go-clamav
+module github.com/tungyao/go-clamav
 
 go 1.18

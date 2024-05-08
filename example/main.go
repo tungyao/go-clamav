@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	clamav "github.com/ca110us/go-clamav"
 )
 
+func convertPath(o string) string {
+	return strings.ReplaceAll(o, `/`, `\\`)
+}
 func main() {
 	// new clamav instance
 	c := new(clamav.Clamav)
@@ -25,7 +29,7 @@ func main() {
 	defer c.Free()
 
 	// load db
-	signo, err := c.LoadDB("./db", uint(clamav.CL_DB_DIRECTORY))
+	signo, err := c.LoadDB(convertPath("./db"), uint(clamav.CL_DB_DIRECTORY))
 	if err != nil {
 		panic(err)
 	}
@@ -42,6 +46,6 @@ func main() {
 	// fmt.Println(c.EngineGetNum(clamav.CL_ENGINE_MAX_SCANSIZE))
 
 	// scan
-	scanned, virusName, ret := c.ScanFile("./test_file/nmap")
+	scanned, virusName, ret := c.ScanFile(convertPath("./test_file/nmap"))
 	fmt.Println(scanned, virusName, ret)
 }

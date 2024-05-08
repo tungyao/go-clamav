@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	clamav "github.com/ca110us/go-clamav"
+	clamav "github.com/tungyao/go-clamav"
 )
 
 func convertPath(o string) string {
